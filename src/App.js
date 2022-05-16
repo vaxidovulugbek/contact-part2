@@ -16,12 +16,6 @@ export default class App extends Component {
         number: undefined,
         select: 'family',
       },
-      // listcontactarr:[
-      //   arr1= {
-      //     name:"ula",
-      //     num:21
-      //   }
-      // ]
 
     }
   }
