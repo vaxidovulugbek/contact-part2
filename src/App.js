@@ -14,10 +14,17 @@ export default class App extends Component {
         name: undefined,
         surname: undefined,
         number: undefined,
-        select: 'family',
+        select: "friend",
       },
+      newarr:[]
 
     }
+  }
+
+  zzzzzzzz = (e) => {
+    e.preventDefault()
+    this.setState({})
+
   }
 
   nameChangeHandler = (e) => {
@@ -26,7 +33,6 @@ export default class App extends Component {
       name: e.target.value
     }
     this.setState({ obj: { ...this.state.obj, ...obj1 } })
-    
     }
     
     surnameChangeHandler = (e) => {
@@ -44,7 +50,8 @@ export default class App extends Component {
     }
     
     categoryChangeHandler = (e) => {
-    let obj1 = {
+      // console.log(e.target.value);
+      let obj1 = {
       select: e.target.value
     }
     this.setState({ obj: {...this.state.obj, ...obj1}})
@@ -53,8 +60,74 @@ export default class App extends Component {
     submitHandler = (e) => {
     e.preventDefault()
     this.setState({arr:[...this.state.arr,{ ...this.state.obj}]})
+    this.setState({newarr:[...this.state.newarr,{ ...this.state.obj}]})
     e.target.reset()
     }
+    btntanla = (e) => {
+      e.preventDefault()
+      // console.log(e.target.textContent);
+      let a = e.target.textContent
+      if (a == "Family") {
+        let pustoyarr = []
+        // console.log(this.state.newarr);
+        this.state.newarr.filter(item => {
+          if (item.select === "Family") {
+            pustoyarr.push(item)
+          }
+
+        })
+        this.setState({arr:[ ...pustoyarr]})
+      }
+
+      if (a == "Friends") {
+        let pustoyarr = []
+        // console.log(this.state.newarr);
+        this.state.newarr.filter(item => {
+          if (item.select === "Friends") {
+            pustoyarr.push(item)
+          }
+
+        })
+        this.setState({arr:[ ...pustoyarr]})
+      }
+
+      if (a == "classmates") {
+        let pustoyarr = []
+        // console.log(this.state.newarr);
+        this.state.newarr.filter(item => {
+          if (item.select === "classmates") {
+            pustoyarr.push(item)
+          }
+
+        })
+        this.setState({arr:[ ...pustoyarr]})
+      }
+      
+      if (a == "All") {
+        this.setState({arr:[ ...this.state.newarr]})
+     }
+    }
+
+    // buttonclicks = (e) => {
+    //   e.preventDefault()
+    //   // let elbtngroup = document.querySelector(".btn-group")
+  
+    //   // elbtngroup.addEventListener("click", (e) => {
+    //   //   let newBaddiy = newarr.filter((item) => {
+    //   //     return item.categorilar == e.target.textContent ;
+      
+    //   //   });
+    //   //   if (e.target.textContent == "All") {
+    //   //     newBaddiy = newarr
+    //   //   }
+    //   //   newlistarr = newBaddiy.map((item) => {
+    //   //     return `<li class="list-group-item d-flex"><span class="me-2 w-25">${item.fname}</span><span class="me-5 ms-5 w-25">${item.lname}</span> <span class="ms-2 w-25">${item.tel}</span></li>`
+    //   //   })
+    //   //   ellist.innerHTML =  newlistarr.join("")
+    //   // })
+    //   console.log("okeyyyyyy");
+    //   console.log(this.state.obj.select);
+    // }
     
   render() {
     return (
@@ -65,6 +138,7 @@ export default class App extends Component {
           numberChangeHandler={this.numberChangeHandler}
           categoryChangeHandler={this.categoryChangeHandler}
           submitHandler={this.submitHandler}
+          btntanla={this.btntanla}
           arr= {this.state.arr}
         />
       </div>
